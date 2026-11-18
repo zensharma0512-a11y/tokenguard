@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tokenguard"
+version = "0.1.0"
+description = "OpenAI-compatible LLM proxy with per-user budgets, rate limits, response caching and provider fallback"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Aryan Sharma" }]
+keywords = ["llm", "proxy", "openai", "anthropic", "budget", "rate-limit", "fallback", "cost"]
+dependencies = ["starlette>=0.37"]
+
+[project.optional-dependencies]
+server = ["uvicorn>=0.29"]
+dev = ["pytest>=7"]
+
+[project.scripts]
+tokenguard = "tokenguard.server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "tests"]
+testpaths = ["tests"]
